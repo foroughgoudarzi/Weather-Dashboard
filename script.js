@@ -28,6 +28,7 @@ $("document").ready(function () {
     }
 
     // **** History section
+    // Adds six buttons
     for (let i = 0; i < 6; i++) {
         $("#history").append("<button class='d-none logBtn text-dark rounded-1'></button>");
     }
@@ -41,7 +42,7 @@ $("document").ready(function () {
         }
     }
 
-    // Adds event listener to search button 
+    // Adds event listener and functionality to search button 
     $("#search-button").on("click", function (event) {
         event.preventDefault();
         city = $("#search-input").val().trim();;
@@ -70,9 +71,9 @@ $("document").ready(function () {
     // ***********************
 
     // Gets cordinates and fetches current weather and calls a function to update the displayed data
-    function fetchCurrentWeather(latitude, longtitude) {
+    function fetchCurrentWeather(lat, lon) {
 
-        let currentURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude.toFixed(2) + "&lon=" + longtitude.toFixed(2) + "&appid=" + apiKey + "&units=metric";
+        let currentURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat.toFixed(2) + "&lon=" + lon.toFixed(2) + "&appid=" + apiKey + "&units=metric";
         
         // Fetch current weather
         fetch(currentURL)
@@ -87,9 +88,9 @@ $("document").ready(function () {
     // ****************************
 
     // Gets coordinates and Fetches five-day forecast and calls a function to update displayed data
-    function fetchFiveDaysForecast(latitude, longtitude) {
+    function fetchFiveDaysForecast(lat, lon) {
 
-        let weatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + latitude.toFixed(2) + "&lon=" + longtitude.toFixed(2) + "&appid=" + apiKey + "&units=metric";
+        let weatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat.toFixed(2) + "&lon=" + lon.toFixed(2) + "&appid=" + apiKey + "&units=metric";
 
         fetch(weatherURL)
             .then(function (response) {
