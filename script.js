@@ -57,9 +57,9 @@ $("document").ready(function () {
     })
 
     // Gets city name and fetches coordinates of the city
-    function fetchCoordinates(city){
+    function fetchCoordinates(town){
 
-    let latURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + apiKey;
+    let latURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + town + "&limit=5&appid=" + apiKey;
 
     fetch(latURL)
         .then(function (response) {
@@ -116,7 +116,7 @@ $("document").ready(function () {
         let icon = iconSource.replace("01n", iconCode);
         todayHeader.append("<img class='d-inline' style='width: 70px;' src=" + icon + " alt='weather'>")
 
-        manageSearchLog();
+       updateSearchLog();
 
     }
     // *******************
@@ -162,14 +162,14 @@ $("document").ready(function () {
     // ****************************************
 
     // Manages history section after each new query
-    function manageSearchLog() {
+    function updateSearchLog() {
         let newCity = { name: city, longtitude: longtitude, latitude: latitude };
         let weatherLog = JSON.parse(localStorage.getItem("cities"));
         if (weatherLog == null) {
             cities[0] = newCity;
         } else {
             cities = weatherLog;
-            let index = cities.findIndex(element => element.name == city);
+            let index = cities.findIndex(element => (element.name).toUpperCase() == city.toUpperCase());
             if (index < 0) {
                 for (let i = cities.length - 1; i >= 0; i--) {
                     if (i < 5) cities[i + 1] = cities[i];
