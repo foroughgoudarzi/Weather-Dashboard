@@ -7,6 +7,9 @@ $("document").ready(function () {
     var iconSource = "https://openweathermap.org/img/wn/01n@2x.png";
 
     // ************ HTML elements *********************
+    // **** style weather header
+    $(".weather-header").css("background-image", "linear-gradient(90deg,  #00adf4, #004b6a)");
+
     // **** Today info section
     var todayHeader = $("<h2>");
     $("#today").append(todayHeader);
@@ -17,11 +20,11 @@ $("document").ready(function () {
     // **** Forcast section
     $("#forecast").append("<h3 id='fivedayheader'></h3>");
     $("#forecast").append("<div class='d-flex flx-row justify-content-between flex-wrap fivedays'></div>");
-    
+
     // Adds elements for five days forcast
     for (let i = 0; i < 5; i++) {
-        $(".fivedays").append("<div class='dayforecast p-2 mb-2'></div>");
-        $(".dayforecast:last").append("<h4 class='date'></h4>");
+        $(".fivedays").append("<div class='col dayforecast p-2 m-2'></div>");
+        $(".dayforecast:last").append("<h4 class='date d-block'></h4>");
         $(".dayforecast:last").append("<p class='temp'></p>");
         $(".dayforecast:last").append("<p class='wind'></p>");
         $(".dayforecast:last").append("<p class='humidity'></p>");
@@ -46,7 +49,7 @@ $("document").ready(function () {
     $("#search-button").on("click", function (event) {
         event.preventDefault();
         city = $("#search-input").val().trim();;
-       
+
         // Fetches latitude and longtitude
         fetchCoordinates(city);
     })
@@ -73,13 +76,13 @@ $("document").ready(function () {
     function fetchCurrentWeather(lat, lon) {
 
         let currentURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat.toFixed(2) + "&lon=" + lon.toFixed(2) + "&appid=" + apiKey + "&units=metric";
-        
+
         // Fetch current weather
         fetch(currentURL)
             .then(function (response) {
                 return response.json();
             }).then(function (dataCW) {
-               
+
                 // Updates displayed current weather
                 updateToday(dataCW)
             });
@@ -95,7 +98,7 @@ $("document").ready(function () {
             .then(function (response) {
                 return response.json();
             }).then(function (dataF) {
-                
+
                 // Updates displayed forecast
                 updateForcast(dataF);
             });
@@ -112,7 +115,7 @@ $("document").ready(function () {
         let iconCode = data.weather[0].icon;
         let icon = iconSource.replace("01n", iconCode);
         todayHeader.append("<img class='d-inline' style='width: 70px;' src=" + icon + " alt='weather'>")
-        
+
         updateSearchLog();
     }
     // *******************
@@ -139,7 +142,7 @@ $("document").ready(function () {
             // Adds forecast image
             let iconCode = data.list[index].weather[0].icon;
             let icon = iconSource.replace("01n", iconCode);
-            $(".dayforecast").eq(i).children().eq(0).append("<img style='width: 50px;' src=" + icon + " alt='weather'>");
+            $(".dayforecast").eq(i).children().eq(0).append("<img class='d-block' style='width: 50px;' src=" + icon + " alt='weather'>");
 
             // Adds forcast temperature
             let temp = data.list[index].main.temp;
@@ -174,7 +177,7 @@ $("document").ready(function () {
         }
 
         localStorage.setItem("cities", JSON.stringify(cities));
-        
+
         // Updates the text on buttons in history section 
         for (let i = 0; i < cities.length; i++) {
             $(".logBtn").eq(i).removeClass('d-none').addClass("bg-dark-subtle border border-0 mb-4 p-2").text(cities[i].name);
