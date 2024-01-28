@@ -16,11 +16,11 @@ $("document").ready(function () {
 
     // **** Forcast section
     $("#forecast").append("<h3 id='fivedayheader'></h3>");
-    $("#forecast").append("<div class='d-flex justify-content-between flex-wrap fivedays'></div>");
+    $("#forecast").append("<div class='d-flex flx-row justify-content-between flex-wrap fivedays'></div>");
     
     // Adds elements for five days forcast
     for (let i = 0; i < 5; i++) {
-        $(".fivedays").append("<div class='col-2 dayforecast p-2'></div>");
+        $(".fivedays").append("<div class='dayforecast p-2 mb-2'></div>");
         $(".dayforecast:last").append("<h4 class='date'></h4>");
         $(".dayforecast:last").append("<p class='temp'></p>");
         $(".dayforecast:last").append("<p class='wind'></p>");
@@ -195,7 +195,7 @@ $("document").ready(function () {
                 city = cityName;
                 // Fetches current weather
                 fetchCurrentWeather(latitude, longtitude);
-                // fetches five days weather forcast
+                // Fetches five days weather forcast
                 fetchFiveDaysForecast(latitude, longtitude);
             }
         }
