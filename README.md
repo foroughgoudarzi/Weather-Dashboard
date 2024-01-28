@@ -2,7 +2,7 @@
 
 ## Description
 
-This project presents an interactive weather dashboard designed to run in web browsers, leveraging dynamically updated HTML and CSS. Utilizing the [OpenWeather APIs](https://openweathermap.org/), this application fetches and displays current weather conditions and a five-day forecast for cities.
+This project presents an interactive [weather dashboard](https://foroughgoudarzi.github.io/Weather-Dashboard/) designed to run in web browsers, leveraging dynamically updated HTML and CSS. Utilizing the [OpenWeather APIs](https://openweathermap.org/), this application fetches and displays current weather conditions and a five-day forecast for cities.
 
 The sequence of operations to retrieve data is as follows:
 
@@ -19,6 +19,13 @@ In an effort to expedite information retrieval, the application stores the coord
 Users can simply input a city name via the provided form and, upon clicking the search button, access the current and upcoming five days' weather data for the specified location. The displayed information encompasses the city name, date, weather icon, temperature, humidity, and wind speed.
 
 Additionally, the application maintains a search history section, showcasing the last six queried cities. By selecting a city from this history, users can swiftly access the associated weather information without re-entering the city name, improving the overall user experience.
+
+Below figure shows a screenshot of the running application.
+
+<figure>
+<img src="./images/weather-app.png" width="500">
+<figcaption><em>Figure.1. Weather Dashboard application</em></figcaption>
+</figure>
 
 ## Installation
 

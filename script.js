@@ -54,13 +54,12 @@ $("document").ready(function () {
     // Gets city name and fetches coordinates of the city
     function fetchCoordinates(town) {
 
-        let latURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + town + "&limit=5&appid=" + apiKey;
+        let latURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + town + "&limit=5&appid=" + apiKey;
 
         fetch(latURL)
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
-                console.log(data);
                 longtitude = data[0].lon;
                 latitude = data[0].lat;
                 city = data[0].name;  // to make sure the displayed data is the data of the intended city
@@ -90,7 +89,7 @@ $("document").ready(function () {
     // Gets coordinates and Fetches five-day forecast and calls a function to update displayed data
     function fetchFiveDaysForecast(lat, lon) {
 
-        let weatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat.toFixed(2) + "&lon=" + lon.toFixed(2) + "&appid=" + apiKey + "&units=metric";
+        let weatherURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat.toFixed(2) + "&lon=" + lon.toFixed(2) + "&appid=" + apiKey + "&units=metric";
 
         fetch(weatherURL)
             .then(function (response) {
@@ -120,10 +119,9 @@ $("document").ready(function () {
 
     // Updates displayed forecast section after each query
     function updateForcast(data) {
-        console.log(data);
 
         // If it is after 9 PM it selects around 12 noon of the next five days for displying forecast
-        // otherwise it selects 24 hours from now for forecasts, whatewher the time is
+        // otherwise it selects 24 hour from now for forecasts, whatever the time is
         if (24 - dayjs().hour() <= 3) var index = 5;
         else var index = 7;
 
